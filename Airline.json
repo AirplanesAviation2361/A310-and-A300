@@ -1,0 +1,7 @@
+geofs.aircraft.list.push({
+    name: "A300 Custom",
+    model: "aircrafts/a300/a300.glb",
+    cockpit: "aircrafts/a310/cockpit.glb",
+    speedMax: 450,
+    turnSpeed: 1.1
+});
