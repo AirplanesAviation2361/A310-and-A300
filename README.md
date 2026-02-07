@@ -1,3 +1,3 @@
-#A310
- Airbus A310: Was The Mid-Capacity Widebody Ahead Of Its Time?
+# A310
+ Airbus A310 Was The Mid-Capacity Widebody Ahead Of Its Time?
 The Airbus A310 is a twin-engine, medium-to-long-range wide-body airliner produced from 1981 to 1998, featuring a shortened fuselage compared to the A300. It was the first to introduce a two-pilot glass cockpit and advanced, fuel-efficient technology for its era. Primarily used for regional and medium-haul, the A310-300 variant offered enhanced range for transatlantic, and it is now largely used for cargo or by specialized operator
