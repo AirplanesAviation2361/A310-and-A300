@@ -1,0 +1,19 @@
+{
+  "name": "Airbus A300 (Realistic)",
+  "mass": 160000,
+  "dragFactor": 0.048,
+  "gearTravelTime": 9,
+  "flapsTravelTime": 3,
+  "flapsSteps": 8,
+  "reverse": true,
+  "minRPM": 1000,
+  "maxRPM": 10000,
+  "engines": [
+    { "thrust": 250000 },
+    { "thrust": 250000 }
+  ],
+  "camera": {
+    "cockpit": [0, 2.5, 8],
+    "external": [0, 10, 35]
+  }
+}
