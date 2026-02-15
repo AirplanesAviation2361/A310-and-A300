@@ -1,0 +1,19 @@
+{
+  "name": "Airbus A300 (Easy)",
+  "mass": 130000,
+  "dragFactor": 0.038,
+  "gearTravelTime": 6,
+  "flapsTravelTime": 2,
+  "flapsSteps": 8,
+  "reverse": true,
+  "minRPM": 1000,
+  "maxRPM": 10000,
+  "engines": [
+    { "thrust": 320000 },
+    { "thrust": 320000 }
+  ],
+  "camera": {
+    "cockpit": [0, 2.5, 8],
+    "external": [0, 10, 35]
+  }
+}
