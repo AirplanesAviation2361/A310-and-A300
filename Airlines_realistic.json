@@ -17,3 +17,23 @@
     "external": [0, 10, 35]
   }
 }
+
+{
+  "name": "Airbus A310 (Realistic)",
+  "mass": 150000,
+  "dragFactor": 0.045,
+  "gearTravelTime": 9,
+  "flapsTravelTime": 3,
+  "flapsSteps": 8,
+  "reverse": true,
+  "minRPM": 1000,
+  "maxRPM": 10000,
+  "engines": [
+    { "thrust": 240000 },
+    { "thrust": 240000 }
+  ],
+  "camera": {
+    "cockpit": [0, 2.5, 8],
+    "external": [0, 10, 35]
+  }
+}
