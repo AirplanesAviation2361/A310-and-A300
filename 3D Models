@@ -1,0 +1,13 @@
+"root": {
+    "type": "root",
+    "model": "3D model links/a310_multiplayer.glb",
+    "position": [0, -0.7, 0]
+},
+"multiplayerLow": "3D model links/a310_multiplayer-low.glb"
+
+"root": {
+    "type": "root",
+    "model": "3D model links/a300_multiplayer.glb",
+    "position": [0, -0.7, 0]
+},
+"multiplayerLow": "3D model links/a300_multiplayer-low.glb"
