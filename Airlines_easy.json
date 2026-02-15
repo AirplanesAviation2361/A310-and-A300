@@ -37,3 +37,57 @@
     "external": [0, 10, 35]
   }
 }
+
+
+[
+  {
+    "name": "Airbus A300 (Easy)",
+    "root": {
+      "type": "root",
+      "model": "3D model links/a300_multiplayer.glb",
+      "position": [0, -0.7, 0]
+    },
+    "multiplayerLow": "3D model links/a300_multiplayer-low.glb",
+    "mass": 130000,
+    "dragFactor": 0.038,
+    "gearTravelTime": 6,
+    "flapsTravelTime": 2,
+    "flapsSteps": 8,
+    "reverse": true,
+    "minRPM": 1000,
+    "maxRPM": 10000,
+    "engines": [
+      { "thrust": 320000 },
+      { "thrust": 320000 }
+    ],
+    "camera": {
+      "cockpit": [0, 2.5, 8],
+      "external": [0, 10, 35]
+    }
+  },
+  {
+    "name": "Airbus A310 (Easy)",
+    "root": {
+      "type": "root",
+      "model": "3D model links/a310_multiplayer.glb",
+      "position": [0, -0.7, 0]
+    },
+    "multiplayerLow": "3D model links/a310_multiplayer-low.glb",
+    "mass": 120000,
+    "dragFactor": 0.035,
+    "gearTravelTime": 6,
+    "flapsTravelTime": 2,
+    "flapsSteps": 8,
+    "reverse": true,
+    "minRPM": 1000,
+    "maxRPM": 10000,
+    "engines": [
+      { "thrust": 300000 },
+      { "thrust": 300000 }
+    ],
+    "camera": {
+      "cockpit": [0, 2.5, 8],
+      "external": [0, 10, 35]
+    }
+  }
+]
