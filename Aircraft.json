@@ -1,0 +1,85 @@
+{
+  "name": "Airbus A300",
+  "type": "airliner",
+
+  "sounds": {
+    "engineLow": { "file": "a300_front_low.ogg", "loop": true },
+    "engineMid": { "file": "a300_front_mid.ogg", "loop": true },
+    "engineHigh": { "file": "a300_front_high.ogg", "loop": true },
+    "reverse": { "file": "a300_reverse.mp3", "loop": true },
+    "touchSoft": { "file": "a300_touch_soft.mp3", "loop": false },
+    "touchHard": { "file": "a300_touch_hard.mp3", "loop": false },
+    "gpws": { "file": "a300_gpws.mp3", "loop": false }
+  },
+
+  "cameras": {
+    "cockpit": { "position": [0, 3.2, 13.5] },
+    "copilot": { "position": [1.2, 3.1, 13.3] },
+    "wingLeft": { "position": [-17, 4, 6] },
+    "wingRight": { "position": [17, 4, 6] },
+    "tail": { "position": [0, 6, -28] },
+    "tower": { "position": [0, 60, -120] }
+  },
+
+  "flightModel": {
+    "mass": 165000,
+    "thrust": 240000,
+    "drag": 0.034,
+    "lift": 1.42,
+
+    "flapsLift": 0.65,
+    "flapsDrag": 0.08,
+    "gearDrag": 0.025,
+
+    "stallSpeed": 118,
+    "rotationSpeed": 145,
+    "approachSpeed": 140,
+    "maxSpeed": 470,
+
+    "climbRate": 2500,
+    "ceiling": 35000
+  }
+}
+
+{
+  "name": "Airbus A310",
+  "type": "airliner",
+
+  "sounds": {
+    "engineLow": { "file": "a310_front_low.ogg", "loop": true },
+    "engineMid": { "file": "a310_front_mid.ogg", "loop": true },
+    "engineHigh": { "file": "a310_front_high.ogg", "loop": true },
+    "reverse": { "file": "a310_reverse.mp3", "loop": true },
+    "touchSoft": { "file": "a310_touch_soft.mp3", "loop": false },
+    "touchHard": { "file": "a310_touch_hard.mp3", "loop": false },
+    "gpws": { "file": "a310_gpws.mp3", "loop": false }
+  },
+
+  "cameras": {
+    "cockpit": { "position": [0, 3.0, 12.8] },
+    "copilot": { "position": [1.1, 3.0, 12.6] },
+    "wingLeft": { "position": [-16, 3.8, 5.5] },
+    "wingRight": { "position": [16, 3.8, 5.5] },
+    "tail": { "position": [0, 5.5, -26] },
+    "tower": { "position": [0, 55, -110] }
+  },
+
+  "flightModel": {
+    "mass": 150000,
+    "thrust": 220000,
+    "drag": 0.031,
+    "lift": 1.45,
+
+    "flapsLift": 0.68,
+    "flapsDrag": 0.075,
+    "gearDrag": 0.022,
+
+    "stallSpeed": 112,
+    "rotationSpeed": 138,
+    "approachSpeed": 134,
+    "maxSpeed": 475,
+
+    "climbRate": 2700,
+    "ceiling": 39000
+  }
+}
