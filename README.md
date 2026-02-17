@@ -5,3 +5,8 @@ The Airbus A310 is a twin-engine, medium-to-long-range wide-body airliner produc
 # A300
  Airbus A300: The history of the plane that launched an ...
 The Airbus A300 is a landmark aircraft, recognized as the world's first twin-engine, wide-body airliner, which revolutionized regional air travel upon its debut in 1974. Manufactured between 1971 and 2007, 561 units were produced, with many still operating today as reliable cargo haulers for major companies like FedEx and UPS
+
+
+
+I am making the .json and javascript for adding these aircrafts easily.
+show this to xavier tassin (creator of geofs)
