@@ -1,0 +1,89 @@
+javascript:(function () {
+
+if (!window.geofs || !geofs.aircraft || !geofs.aircraft.instance) {
+    alert("Load GeoFS flight first.");
+    return;
+}
+
+/* -------------------------------
+   DETECT AIRCRAFT
+--------------------------------*/
+const name = geofs.aircraft.instance.aircraftRecord.name.toLowerCase();
+const TYPE = name.includes("310") ? "A310" : "A300";
+
+console.log(" CSS Injector for", TYPE);
+
+/* -------------------------------
+   CREATE STYLE ELEMENT
+--------------------------------*/
+const style = document.createElement("style");
+
+let css = "";
+
+/* -------------------------------
+   A300 CLASSIC AIRBUS STYLE
+--------------------------------*/
+if (TYPE === "A300") {
+
+css = `
+/* HUD text */
+.geofs-ui-hud {
+    color: #ffb347 !important;
+    text-shadow: 0 0 6px rgba(255,179,71,0.8);
+}
+
+/* panel background */
+.geofs-ui-panel {
+    background: linear-gradient(#0b1d3a, #050c1a) !important;
+    border: 1px solid #ffb347 !important;
+}
+
+/* warning messages */
+.geofs-warning {
+    color: #ff6b3d !important;
+    font-weight: bold;
+}
+
+/* labels */
+.geofs-ui-label {
+    color: #ffd27f !important;
+}
+`;
+}
+
+/* -------------------------------
+   A310 MODERN AIRBUS STYLE
+--------------------------------*/
+if (TYPE === "A310") {
+
+css = `
+.geofs-ui-hud {
+    color: #7fe3ff !important;
+    text-shadow: 0 0 8px rgba(127,227,255,0.7);
+}
+
+.geofs-ui-panel {
+    background: linear-gradient(#1a1f2b, #0d111a) !important;
+    border: 1px solid #7fe3ff !important;
+}
+
+.geofs-warning {
+    color: #ff5555 !important;
+    font-weight: 600;
+}
+
+.geofs-ui-label {
+    color: #bfefff !important;
+}
+`;
+}
+
+/* -------------------------------
+   INJECT CSS
+--------------------------------*/
+style.innerHTML = css;
+document.head.appendChild(style);
+
+console.log("Airbus CSS theme applied:", TYPE);
+
+})();
