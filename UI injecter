@@ -1,0 +1,130 @@
+javascript:(function () {
+
+if (!window.geofs || !geofs.aircraft || !geofs.aircraft.instance) {
+    alert("Load GeoFS flight first.");
+    return;
+}
+
+/* -------------------------
+   DETECT AIRCRAFT
+------------------------- */
+const name = geofs.aircraft.instance.aircraftRecord.name.toLowerCase();
+const TYPE = name.includes("310") ? "A310" : "A300";
+
+console.log("🛫 Airbus Cockpit UI:", TYPE);
+
+/* -------------------------
+   COLORS PER AIRCRAFT
+------------------------- */
+const COLORS = TYPE === "A310"
+? { main:"#7fe3ff", dim:"#1a1f2b", warn:"#ff5555" }
+: { main:"#ffb347", dim:"#0b1d3a", warn:"#ff6b3d" };
+
+/* -------------------------
+   CREATE ROOT PANEL
+------------------------- */
+const panel = document.createElement("div");
+panel.id = "airbus-cockpit-ui";
+panel.style = `
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+width:900px;
+height:260px;
+background:${COLORS.dim};
+border:2px solid ${COLORS.main};
+border-radius:12px;
+font-family:monospace;
+color:${COLORS.main};
+z-index:9999;
+display:flex;
+padding:10px;
+gap:10px;
+`;
+
+/* -------------------------
+   GENERIC DISPLAY BOX
+------------------------- */
+function makeDisplay(title){
+    const d = document.createElement("div");
+    d.style = `
+    flex:1;
+    border:1px solid ${COLORS.main};
+    padding:6px;
+    position:relative;
+    `;
+    d.innerHTML = `<div style="font-size:12px;opacity:.7">${title}</div>
+                   <div class="value" style="font-size:26px;margin-top:8px">0</div>`;
+    return d;
+}
+
+/* -------------------------
+   CREATE DISPLAYS
+------------------------- */
+const speedBox = makeDisplay("SPD");
+const altBox   = makeDisplay("ALT");
+const vsiBox   = makeDisplay("V/S");
+const hdgBox   = makeDisplay("HDG");
+const n1Box    = makeDisplay("N1");
+
+panel.append(speedBox, altBox, vsiBox, hdgBox, n1Box);
+
+/* -------------------------
+   WARNING BAR
+------------------------- */
+const warn = document.createElement("div");
+warn.style = `
+position:absolute;
+top:-26px;
+left:0;
+right:0;
+text-align:center;
+color:${COLORS.warn};
+font-weight:bold;
+font-size:14px;
+`;
+panel.appendChild(warn);
+
+/* -------------------------
+   ADD TO SCREEN
+------------------------- */
+document.body.appendChild(panel);
+
+/* -------------------------
+   UPDATE LOOP
+------------------------- */
+setInterval(()=>{
+
+    const v = geofs.animation.values;
+
+    const spd = Math.round(v.kias || 0);
+    const alt = Math.round(v.altitude || 0);
+    const vsi = Math.round(v.climbrate || 0);
+    const hdg = Math.round(v.heading || 0);
+    const n1  = Math.round((v.rpm || 0) * 100);
+
+    speedBox.querySelector(".value").textContent = spd;
+    altBox.querySelector(".value").textContent   = alt;
+    vsiBox.querySelector(".value").textContent   = vsi;
+    hdgBox.querySelector(".value").textContent   = hdg;
+    n1Box.querySelector(".value").textContent    = n1 + "%";
+
+    /* WARNINGS */
+
+    if (alt < 50 && spd > 160) {
+        warn.textContent = "TOO FAST";
+    }
+    else if (spd < 120 && alt < 1000) {
+        warn.textContent = "STALL";
+    }
+    else if (v.climbrate < -3000 && alt < 2500) {
+        warn.textContent = "SINK RATE";
+    }
+    else {
+        warn.textContent = "";
+    }
+
+}, 100);
+
+})();
