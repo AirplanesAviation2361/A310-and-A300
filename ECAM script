@@ -1,0 +1,119 @@
+javascript:(function(){
+
+if (!window.geofs || !geofs.aircraft || !geofs.aircraft.instance) {
+    alert("Load GeoFS flight first.");
+    return;
+}
+
+/* ---------------- AIRCRAFT DETECT ---------------- */
+const name = geofs.aircraft.instance.aircraftRecord.name.toLowerCase();
+const TYPE = name.includes("310") ? "A310" : "A300";
+
+/* ---------------- COLORS ---------------- */
+const COLOR = TYPE === "A310" ? "#7fe3ff" : "#ffb347";
+const WARN  = "#ff5555";
+
+/* ---------------- ECAM PANEL ---------------- */
+const ecam = document.createElement("div");
+ecam.style = `
+position:fixed;
+top:20px;
+right:20px;
+width:260px;
+background:black;
+border:2px solid ${COLOR};
+color:${COLOR};
+font-family:monospace;
+padding:10px;
+z-index:9999;
+`;
+ecam.innerHTML = "<b>ECAM</b><br><div id='ecamText'>COLD & DARK</div>";
+document.body.appendChild(ecam);
+
+const ecamText = ecam.querySelector("#ecamText");
+
+/* ---------------- STARTUP STATES ---------------- */
+let state = 0;
+/*
+0 = cold dark
+1 = battery
+2 = apu start
+3 = apu bleed
+4 = eng1
+5 = eng2
+6 = controls check
+7 = ready
+*/
+
+/* ---------------- STARTUP TIMER ---------------- */
+function nextState(){
+    state++;
+    updateECAM();
+
+    if(state < 7){
+        setTimeout(nextState, TYPE === "A310" ? 2500 : 3200);
+    }
+}
+
+/* Start automatically after load */
+setTimeout(nextState, 2000);
+
+/* ---------------- ECAM TEXT PER STATE ---------------- */
+function updateECAM(){
+
+const messages = [
+"COLD & DARK",
+"BAT ON",
+"APU START",
+"APU BLEED",
+"ENG 1 START",
+"ENG 2 START",
+"FLIGHT CONTROLS CHECK",
+"READY FOR TAKEOFF"
+];
+
+ecamText.textContent = messages[state] || "";
+}
+
+/* ---------------- WARNING MONITOR ---------------- */
+setInterval(()=>{
+
+    const v = geofs.animation.values;
+
+    const spd = v.kias || 0;
+    const alt = v.altitude || 0;
+    const vsi = v.climbrate || 0;
+    const gear = geofs.aircraft.instance.groundContact;
+    const rpm = v.rpm || 0;
+
+    /* Priority warnings */
+
+    let warning = "";
+
+    if (spd < 120 && alt < 1000 && state >= 7) {
+        warning = "STALL";
+    }
+    else if (vsi < -3000 && alt < 2500) {
+        warning = "SINK RATE";
+    }
+    else if (spd > 340) {
+        warning = "OVERSPEED";
+    }
+    else if (!gear && alt < 500 && spd < 160) {
+        warning = "GEAR NOT DOWN";
+    }
+    else if (rpm < 0.2 && state >= 5) {
+        warning = "ENGINE FAIL";
+    }
+
+    if (warning) {
+        ecamText.style.color = WARN;
+        ecamText.textContent = warning;
+    } else {
+        ecamText.style.color = COLOR;
+        updateECAM();
+    }
+
+}, 200);
+
+})();
