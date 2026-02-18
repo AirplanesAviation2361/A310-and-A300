@@ -1,0 +1,17 @@
+Airbus.systems.ecam = function () {
+
+    const v = geofs.animation.values;
+    if (!v) return;
+
+    const warnings = [];
+
+    if ((v.kias || 0) < Airbus.config.stall)
+        warnings.push("STALL");
+
+    if (Math.abs(v.climbrate || 0) > 4000)
+        warnings.push("SINK RATE");
+
+    Airbus.ui.box.innerHTML = warnings.length
+        ? "⚠ " + warnings.join(" | ")
+        : Airbus.ui.box.innerHTML;
+};
