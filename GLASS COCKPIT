@@ -1,0 +1,195 @@
+javascript:(function(){
+
+if (!window.geofs || !geofs.aircraft || !geofs.aircraft.instance) {
+    alert("Load GeoFS flight first.");
+    return;
+}
+
+/* ------------------ AIRCRAFT DETECT ------------------ */
+const name = geofs.aircraft.instance.aircraftRecord.name.toLowerCase();
+const TYPE = name.includes("310") ? "A310" : "A300";
+
+/* ------------------ COLOR THEMES ------------------ */
+const THEME = TYPE === "A310"
+? { main:"#7fe3ff", bg:"#0b111a", warn:"#ff5555" }
+: { main:"#ffb347", bg:"#081426", warn:"#ff6b3d" };
+
+/* ------------------ ROOT COCKPIT ------------------ */
+const root = document.createElement("div");
+root.style = `
+position:fixed;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+width:980px;
+height:300px;
+background:${THEME.bg};
+border:2px solid ${THEME.main};
+border-radius:12px;
+display:flex;
+gap:10px;
+padding:10px;
+font-family:monospace;
+color:${THEME.main};
+z-index:9999;
+`;
+document.body.appendChild(root);
+
+/* ------------------ SCREEN BUILDER ------------------ */
+function screen(title){
+    const s = document.createElement("div");
+    s.style = `
+    flex:1;
+    border:1px solid ${THEME.main};
+    position:relative;
+    padding:6px;
+    overflow:hidden;
+    `;
+    s.innerHTML = `<div style="font-size:12px;opacity:.7">${title}</div>`;
+    return s;
+}
+
+const PFD = screen("PFD");
+const ND  = screen("ND");
+const ENG = screen("ENG");
+root.append(PFD, ND, ENG);
+
+/* ------------------ ARTIFICIAL HORIZON ------------------ */
+const horizon = document.createElement("div");
+horizon.style = `
+position:absolute;
+left:0; right:0; top:20px; bottom:0;
+background:linear-gradient(#4da6ff 50%, #8b5a2b 50%);
+transform-origin:center;
+`;
+PFD.appendChild(horizon);
+
+/* ------------------ SPEED / ALT TAPES ------------------ */
+function tape(parent, side){
+    const t = document.createElement("div");
+    t.style = `
+    position:absolute;
+    top:40px;
+    ${side}:0;
+    width:60px;
+    bottom:10px;
+    border-left:1px solid ${THEME.main};
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    `;
+    parent.appendChild(t);
+    return t;
+}
+
+const spdTape = tape(PFD,"left");
+const altTape = tape(PFD,"right");
+
+/* ------------------ HEADING STRIP ------------------ */
+const hdg = document.createElement("div");
+hdg.style = `
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+height:28px;
+border-top:1px solid ${THEME.main};
+display:flex;
+align-items:center;
+justify-content:center;
+`;
+PFD.appendChild(hdg);
+
+/* ------------------ ENGINE GAUGES ------------------ */
+function engineGauge(x){
+    const g = document.createElement("div");
+    g.style = `
+    position:absolute;
+    bottom:20px;
+    width:40%;
+    height:12px;
+    left:${x};
+    border:1px solid ${THEME.main};
+    `;
+    const fill = document.createElement("div");
+    fill.style = `height:100%; width:0%; background:${THEME.main};`;
+    g.appendChild(fill);
+    ENG.appendChild(g);
+    return fill;
+}
+
+const eng1 = engineGauge("5%");
+const eng2 = engineGauge("55%");
+
+/* ------------------ AUTOPILOT PANEL ------------------ */
+const ap = document.createElement("div");
+ap.style = `
+position:absolute;
+top:-34px;
+left:50%;
+transform:translateX(-50%);
+font-size:13px;
+color:${THEME.main};
+`;
+root.appendChild(ap);
+
+let selHDG=0, selALT=0, selVS=0;
+
+/* ------------------ WARNING BAR ------------------ */
+const warn = document.createElement("div");
+warn.style = `
+position:absolute;
+top:-18px;
+left:0;
+right:0;
+text-align:center;
+color:${THEME.warn};
+font-weight:bold;
+font-size:14px;
+`;
+root.appendChild(warn);
+
+/* ------------------ UPDATE LOOP ------------------ */
+setInterval(()=>{
+
+    const v = geofs.animation.values;
+
+    const pitch = v.pitch || 0;
+    const bank  = v.roll || 0;
+    const spd   = Math.round(v.kias || 0);
+    const alt   = Math.round(v.altitude || 0);
+    const vsi   = Math.round(v.climbrate || 0);
+    const heading = Math.round(v.heading || 0);
+    const n1 = Math.min((v.rpm||0)*100,100);
+
+    /* Horizon motion */
+    horizon.style.transform =
+        `rotate(${-bank}deg) translateY(${pitch*2}px)`;
+
+    /* Tapes */
+    spdTape.textContent = spd;
+    altTape.textContent = alt;
+
+    /* Heading */
+    hdg.textContent = "HDG " + heading;
+
+    /* Engines */
+    eng1.style.width = n1 + "%";
+    eng2.style.width = n1 + "%";
+
+    /* Simple autopilot targets */
+    if(!selHDG){ selHDG = heading; selALT = alt; }
+
+    ap.textContent =
+        `AP  HDG ${selHDG}  ALT ${selALT}  VS ${selVS}`;
+
+    /* Warnings (ECAM-style) */
+    if (spd < 120 && alt < 1000) warn.textContent="STALL";
+    else if (vsi < -3000 && alt < 2500) warn.textContent="SINK RATE";
+    else if (alt < 40 && spd > 160) warn.textContent="TOO FAST";
+    else warn.textContent="";
+
+}, 100);
+
+})();
