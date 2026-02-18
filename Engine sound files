@@ -1,0 +1,92 @@
+javascript:(function () {
+if (!window.geofs || !geofs.aircraft || !geofs.aircraft.instance) {
+    alert("Load into GeoFS flight first.");
+    return;
+}
+console.log("✈️ Airbus Engine Sound Pack Loaded");
+
+// URLs for A300 & A310
+const URL = "https://github.com/AirplanesAviation2361/A310-and-A300.git";
+
+const SOUND_PACKS = {
+  A300: {
+    frontLow: URL+"/a300_front_low.ogg",
+    frontMid: URL+"/a300_front_mid.ogg",
+    frontHigh: URL+"/a300_front_high.ogg",
+    rear: URL+"/a300_rear.ogg",
+    far: URL+"/a300_far.mp3",
+    cabinIdle: URL+"/a300_cabin_idle.ogg",
+    cabinCruise: URL+"/a300_cabin_cruise.ogg",
+    reverse: URL+"/a300_reverse.mp3",
+    touchSoft: URL+"/a300_touch_soft.mp3",
+    touchHard: URL+"/a300_touch_hard.mp3",
+    gpws: URL+"/a300_gpws.mp3"
+  },
+  A310: {
+    frontLow: URL+"/a310_front_low.ogg",
+    frontMid: URL+"/a310_front_mid.ogg",
+    frontHigh: URL+"/a310_front_high.ogg",
+    rear: URL+"/a310_rear.ogg",
+    far: URL+"/a310_far.mp3",
+    cabinIdle: URL+"/a310_cabin_idle.ogg",
+    cabinCruise: URL+"/a310_cabin_cruise.ogg",
+    reverse: URL+"/a310_reverse.mp3",
+    touchSoft: URL+"/a310_touch_soft.mp3",
+    touchHard: URL+"/a310_touch_hard.mp3",
+    gpws: URL+"/a310_gpws.mp3"
+  }
+};
+
+const TYPE = geofs.aircraft.instance.aircraftRecord.name.includes("310") ? "A310" : "A300";
+const S = SOUND_PACKS[TYPE];
+
+// Create audio objects
+function makeAudio(src, loop = true) { const a = new Audio(src); a.loop = loop; a.volume=0; return a; }
+const sounds = Object.fromEntries(Object.entries(S).map(([k,v])=>[k, makeAudio(v)]));
+
+// Play looped sounds
+Object.values(sounds).forEach(s=>s.loop && s.play().catch(()=>{}));
+
+// Physics loop
+setInterval(()=>{
+    const rpmRaw = geofs.animation.values.rpm||0;
+    const spoolFactor = TYPE==="A300"?1.35:1.22;
+    const rpm = Math.pow(rpmRaw,spoolFactor)/11;
+    const speed = geofs.animation.values.kias||0;
+    const alt = geofs.animation.values.altitude||0;
+    const onGround = geofs.aircraft.instance.groundContact;
+
+    // Engine
+    sounds.frontLow.volume = Math.min(rpm*1.2,1);
+    sounds.frontMid.volume = Math.min(Math.max(rpm-0.2,0),1);
+    sounds.frontHigh.volume = Math.min(Math.max(rpm-0.55,0),1);
+    sounds.rear.volume = Math.min(rpm*(TYPE==="A300"?2:1.6),1);
+    sounds.far.volume = Math.min(speed/250,1)*(alt>500?1:0);
+
+    // Cabin
+    sounds.cabinIdle.volume = onGround?0.6:0.2;
+    sounds.cabinCruise.volume = (!onGround && alt>1500)?0.5:0;
+
+    // Reverse
+    sounds.reverse.volume = (onGround && geofs.animation.values.throttle<0.05 && speed>40)?0.8:0;
+
+    // GPWS
+    if((geofs.animation.values.climbrate||0)<=-4500 && alt<2500 && !sounds.gpws.playing){
+        sounds.gpws.currentTime=0; sounds.gpws.play();
+        sounds.gpws.playing=true; setTimeout(()=>sounds.gpws.playing=false,4000);
+    }
+},100);
+
+// Touchdown
+let lastGround=false;
+setInterval(()=>{
+    const onGround = geofs.aircraft.instance.groundContact;
+    const cr = Math.abs(geofs.animation.values.climbrate||0);
+    if(!lastGround && onGround){
+        if(cr>=700){ sounds.touchHard.currentTime=0; sounds.touchHard.play(); }
+        else { sounds.touchSoft.currentTime=0; sounds.touchSoft.play(); }
+    }
+    lastGround=onGround;
+},50);
+
+})();
