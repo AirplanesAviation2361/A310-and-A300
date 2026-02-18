@@ -1,0 +1,13 @@
+Airbus.systems.engines = (function () {
+
+    let smoothRPM = 0;
+
+    return function () {
+        const v = geofs.animation.values;
+        if (!v) return;
+
+        smoothRPM += ((v.rpm || 0) - smoothRPM) * 0.05;
+        Airbus.systems.smoothRPM = smoothRPM;
+    };
+
+})();
