@@ -11,7 +11,7 @@ if (!window.geofs || !geofs.aircraft || !geofs.aircraft.instance) {
 const name = geofs.aircraft.instance.aircraftRecord.name.toLowerCase();
 const TYPE = name.includes("310") ? "A310" : "A300";
 
-console.log("🛫 Airbus Cockpit UI:", TYPE);
+console.log(" Airbus Cockpit UI:", TYPE);
 
 /* -------------------------
    COLORS PER AIRCRAFT
