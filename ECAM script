@@ -117,3 +117,30 @@ setInterval(()=>{
 }, 200);
 
 })();
+
+
+Airbus.systems.ecam = function () {
+
+    const v = geofs.animation.values;
+    if (!v) return;
+
+    const warnings = [];
+
+    /* Built-in GeoFS */
+    if (v.stallWarning) warnings.push("STALL");
+    if (v.overSpeed) warnings.push("OVERSPEED");
+
+    /* Failure add-on (if present) */
+    if (v.terrainWarning) warnings.push("TERRAIN PULL UP");
+    if (v.windShear) warnings.push("WINDSHEAR");
+
+    if (v.engineFire1) warnings.push("ENG 1 FIRE");
+    if (v.engineFire2) warnings.push("ENG 2 FIRE");
+    if (v.engineFire3) warnings.push("ENG 3 FIRE");
+    if (v.engineFire4) warnings.push("ENG 4 FIRE");
+
+    /* Display */
+    if (warnings.length) {
+        Airbus.ui.box.innerHTML = "⚠ " + warnings.join(" | ");
+    }
+};
