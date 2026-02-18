@@ -5,7 +5,7 @@ if (!window.geofs || !geofs.aircraft || !geofs.aircraft.instance) {
     return;
 }
 
-console.log("✈️ Airbus Widebody Sound Pack Loaded");
+console.log("Airbus Widebody Sound Pack Loaded");
 
 /* ---------------------------------------------------
    SOUND URL CONFIG
