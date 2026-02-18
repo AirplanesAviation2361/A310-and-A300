@@ -1,0 +1,67 @@
+(function () {
+
+const canvas = document.createElement("canvas");
+canvas.width = 300;
+canvas.height = 300;
+canvas.style = `
+position:fixed;
+bottom:20px;
+right:20px;
+background:black;
+border:2px solid #00ffff;
+z-index:9999;
+`;
+document.body.appendChild(canvas);
+
+const ctx = canvas.getContext("2d");
+
+function draw() {
+
+    const v = geofs.animation.values;
+    if (!v) return;
+
+    const pitch = v.pitch || 0;
+    const roll = v.roll || 0;
+    const spd = v.kias || 0;
+    const alt = v.altitude || 0;
+
+    ctx.clearRect(0, 0, 300, 300);
+
+    /* Sky */
+    ctx.fillStyle = "#1a3cff";
+    ctx.fillRect(0, 0, 300, 150 + pitch * 2);
+
+    /* Ground */
+    ctx.fillStyle = "#8b4513";
+    ctx.fillRect(0, 150 + pitch * 2, 300, 300);
+
+    /* Horizon line */
+    ctx.strokeStyle = "white";
+    ctx.beginPath();
+    ctx.moveTo(0, 150 + pitch * 2);
+    ctx.lineTo(300, 150 + pitch * 2);
+    ctx.stroke();
+
+    /* Speed */
+    ctx.fillStyle = "#00ffff";
+    ctx.font = "16px monospace";
+    ctx.fillText("SPD " + spd.toFixed(0), 10, 20);
+
+    /* Altitude */
+    ctx.fillText("ALT " + alt.toFixed(0), 200, 20);
+
+    /* Roll indicator */
+    ctx.save();
+    ctx.translate(150, 150);
+    ctx.rotate(-roll);
+    ctx.strokeStyle = "yellow";
+    ctx.beginPath();
+    ctx.moveTo(-40, 0);
+    ctx.lineTo(40, 0);
+    ctx.stroke();
+    ctx.restore();
+}
+
+setInterval(draw, 50);
+
+})();
