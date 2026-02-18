@@ -1,0 +1,15 @@
+Airbus.systems.fbw = function () {
+
+    const v = geofs.animation.values;
+    if (!v) return;
+
+    const spd = v.kias || 0;
+
+    /* Alpha protection */
+    if (spd < Airbus.config.stall) {
+        geofs.animation.values.pitch = Math.max(
+            geofs.animation.values.pitch,
+            -5
+        );
+    }
+};
