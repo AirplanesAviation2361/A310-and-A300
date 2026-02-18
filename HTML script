@@ -1,0 +1,48 @@
+<div id="cockpit">
+  <!-- Top FCU -->
+  <div id="fcu">
+    <span id="fcu-spd">SPD: 0</span>
+    <span id="fcu-hdg">HDG: 0</span>
+    <span id="fcu-alt">ALT: 0</span>
+    <span id="fcu-vs">V/S: 0</span>
+  </div>
+
+  <!-- Main Displays -->
+  <div id="main-displays">
+    <canvas id="pfd" width="400" height="400"></canvas>
+    <canvas id="nd" width="400" height="400"></canvas>
+  </div>
+
+  <!-- ECAM -->
+  <div id="ecam">
+    <div id="ecam-upper">ENG N1: 0 | EGT: 0 | FUEL FLOW: 0</div>
+    <div id="ecam-lower">Fuel: 0 | Flaps: 0 | Trim: 0</div>
+  </div>
+</div>
+
+<style>
+#cockpit {
+  width: 820px;
+  margin: auto;
+  font-family: "Arial", sans-serif;
+  color: #0ff;
+  background: #111;
+  padding: 5px;
+  border-radius: 5px;
+}
+#fcu {
+  display: flex;
+  justify-content: space-around;
+  background: #222;
+  padding: 5px;
+  font-size: 16px;
+}
+#main-displays {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+canvas { background: #000; border: 1px solid #0ff; }
+#ecam { margin-top: 5px; background: #222; padding: 5px; }
+#ecam-upper, #ecam-lower { margin: 2px 0; }
+</style>
