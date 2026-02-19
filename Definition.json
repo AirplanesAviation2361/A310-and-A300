@@ -1,10 +1,4 @@
-{
-  "id": 330,
-  "name": "Airbus A300",
-  "fullPath": "https://raw.githubusercontent.com/AirplanesAviation2361/A310-and-A300/main/a300/",
-  "isPremium": 0,
-  "isCommunity": 0,
-  "definition": "REPLACE_WITH_BASE64_A300"
+a300/definition.json
 {
   "mass": 165000,
   "emptyMass": 90000,
@@ -49,16 +43,7 @@
   ]
 }
 
-
-
-
-{
-  "id": 331,
-  "name": "Airbus A310",
-  "fullPath": "https://raw.githubusercontent.com/AirplanesAviation2361/A310-and-A300/main/a310/",
-  "isPremium": 0,
-  "isCommunity": 0,
-  "definition": "REPLACE_WITH_BASE64_A310"
+a310/defination.json
 {
   "mass": 150000,
   "emptyMass": 80000,
