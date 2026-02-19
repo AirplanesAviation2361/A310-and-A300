@@ -1,4 +1,4 @@
-a300/definition.json
+"a300/definition.json"
 {
   "mass": 165000,
   "emptyMass": 90000,
@@ -43,7 +43,7 @@ a300/definition.json
   ]
 }
 
-a310/defination.json
+"a310/defination.json"
 {
   "mass": 150000,
   "emptyMass": 80000,
