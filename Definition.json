@@ -1,0 +1,104 @@
+{
+  "id": 330,
+  "name": "Airbus A300",
+  "fullPath": "https://raw.githubusercontent.com/AirplanesAviation2361/A310-and-A300/main/a300/",
+  "isPremium": 0,
+  "isCommunity": 0,
+  "definition": "REPLACE_WITH_BASE64_A300"
+{
+  "mass": 165000,
+  "emptyMass": 90000,
+  "fuelCapacity": 68000,
+
+  "engines": [
+    {
+      "thrust": 240000,
+      "afterburner": false,
+      "reverse": true
+    },
+    {
+      "thrust": 240000,
+      "afterburner": false,
+      "reverse": true
+    }
+  ],
+
+  "gear": {
+    "retractable": true,
+    "count": 3
+  },
+
+  "flaps": {
+    "positions": [0, 10, 20, 30],
+    "liftMultiplier": 1.9,
+    "dragMultiplier": 1.6
+  },
+
+  "flight": {
+    "cruiseSpeed": 470,
+    "stallSpeed": 120,
+    "maxSpeed": 520,
+    "climbRate": 2500,
+    "ceiling": 41000
+  },
+
+  "cameras": [
+    { "name": "Cockpit", "position": [0, 3.2, 14] },
+    { "name": "Wing", "position": [12, 2, 2] },
+    { "name": "Chase", "position": [0, 6, -35] }
+  ]
+}
+
+
+
+
+{
+  "id": 331,
+  "name": "Airbus A310",
+  "fullPath": "https://raw.githubusercontent.com/AirplanesAviation2361/A310-and-A300/main/a310/",
+  "isPremium": 0,
+  "isCommunity": 0,
+  "definition": "REPLACE_WITH_BASE64_A310"
+{
+  "mass": 150000,
+  "emptyMass": 80000,
+  "fuelCapacity": 61000,
+
+  "engines": [
+    {
+      "thrust": 220000,
+      "afterburner": false,
+      "reverse": true
+    },
+    {
+      "thrust": 220000,
+      "afterburner": false,
+      "reverse": true
+    }
+  ],
+
+  "gear": {
+    "retractable": true,
+    "count": 3
+  },
+
+  "flaps": {
+    "positions": [0, 10, 20, 30],
+    "liftMultiplier": 1.85,
+    "dragMultiplier": 1.55
+  },
+
+  "flight": {
+    "cruiseSpeed": 460,
+    "stallSpeed": 118,
+    "maxSpeed": 510,
+    "climbRate": 2400,
+    "ceiling": 41000
+  },
+
+  "cameras": [
+    { "name": "Cockpit", "position": [0, 3.1, 13] },
+    { "name": "Wing", "position": [11, 2, 1] },
+    { "name": "Chase", "position": [0, 6, -34] }
+  ]
+}
