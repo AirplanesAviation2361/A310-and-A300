@@ -10,3 +10,4 @@ The Airbus A300 is a landmark aircraft, recognized as the world's first twin-eng
 
 I am making the .json and javascript for adding these aircrafts easily.
 show this to xavier tassin (creator of geofs)
+oh, and thanks to base64 for making my ENCODE
