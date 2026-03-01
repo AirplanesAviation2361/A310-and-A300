@@ -1,89 +1,41 @@
 "a300/definition.json"
 {
+  "mass": 165000,                          {
   "mass": 165000,
   "emptyMass": 90000,
   "fuelCapacity": 68000,
-
   "engines": [
-    {
-      "thrust": 240000,
-      "afterburner": false,
-      "reverse": true
-    },
-    {
-      "thrust": 240000,
-      "afterburner": false,
-      "reverse": true
-    }
+    { "thrust": 240000, "afterburner": false, "reverse": true },
+    { "thrust": 240000, "afterburner": false, "reverse": true }
   ],
-
-  "gear": {
-    "retractable": true,
-    "count": 3
-  },
-
-  "flaps": {
-    "positions": [0, 10, 20, 30],
-    "liftMultiplier": 1.9,
-    "dragMultiplier": 1.6
-  },
-
-  "flight": {
-    "cruiseSpeed": 470,
-    "stallSpeed": 120,
-    "maxSpeed": 520,
-    "climbRate": 2500,
-    "ceiling": 41000
-  },
-
+  "gear": { "retractable": true, "count": 3 },
+  "flaps": { "positions": [0,10,20,30], "liftMultiplier": 1.9, "dragMultiplier": 1.6 },
+  "flight": { "cruiseSpeed": 470, "stallSpeed": 120, "maxSpeed": 520, "climbRate": 2500, "ceiling": 41000 },
   "cameras": [
-    { "name": "Cockpit", "position": [0, 3.2, 14] },
-    { "name": "Wing", "position": [12, 2, 2] },
-    { "name": "Chase", "position": [0, 6, -35] }
-  ]
-}
+    { "name": "Cockpit", "position": [0,3.2,14] },
+    { "name": "Wing", "position": [12,2,2] },
+    { "name": "Chase", "position": [0,6,-35] }
+
 
 "a310/defination.json"
 {
-  "mass": 150000,
+   "mass": 150000,                          {
+  "mass":150000,
+  "emptyMass": 80000,
+  "fuelCapacity": 61000,
+  "engines": [
+    { "thrust": 220000, "afterburner": false, "reverse": true },
+    { "thrust": 220000, "afterburner": false, "reverse": true }
+  ],
+  "gear": { "retractable": true, "count": 3 },
+  "flaps": { "positions": [0,10,20,30], "liftMultiplier": 1.85, "dragMultiplier": 1.55 },
+  "flight": { "cruiseSpeed": 460, "stallSpeed": 118, "maxSpeed": 510, "climbRate": 2400, "ceiling": 41000 },
+  "cameras": [
+    { "name": "Cockpit", "position": [0,3.1,13] },
+    { "name": "Wing", "position": [11,2,1] },
+    { "name": "Chase", "position": [0,6,-34] }
+"mass": 150000,
   "emptyMass": 80000,
   "fuelCapacity": 61000,
 
-  "engines": [
-    {
-      "thrust": 220000,
-      "afterburner": false,
-      "reverse": true
-    },
-    {
-      "thrust": 220000,
-      "afterburner": false,
-      "reverse": true
-    }
-  ],
 
-  "gear": {
-    "retractable": true,
-    "count": 3
-  },
-
-  "flaps": {
-    "positions": [0, 10, 20, 30],
-    "liftMultiplier": 1.85,
-    "dragMultiplier": 1.55
-  },
-
-  "flight": {
-    "cruiseSpeed": 460,
-    "stallSpeed": 118,
-    "maxSpeed": 510,
-    "climbRate": 2400,
-    "ceiling": 41000
-  },
-
-  "cameras": [
-    { "name": "Cockpit", "position": [0, 3.1, 13] },
-    { "name": "Wing", "position": [11, 2, 1] },
-    { "name": "Chase", "position": [0, 6, -34] }
-  ]
-}
