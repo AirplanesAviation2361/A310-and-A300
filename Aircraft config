@@ -1,0 +1,292 @@
+[
+{
+    "scale":1,
+    "mass":165000,
+    "tensorFactor":0.018,
+    "dragFactor":2.4,
+    "com":[0,-11,0],
+    "gearTravelTime":8,
+    "flapsTravelTime":5,
+    "flapsSteps":4,
+    "airbrakesTravelTime":1,
+    "brakeDamping":6,
+    "zeroThrustAltitude":72000,
+    "reverse":true,
+    "minRPM":900,
+    "maxRPM":9800,
+    "driveRatio":0.29,
+    "engineInertia":1.6,
+    "startupTime":12,
+    "startAltitude":4,
+    "startTilt":0,
+    "minimumSpeed":155,
+    "cockpitScaleFix":1,
+    "autopilot":true,
+
+    "instruments":{
+        "airspeedJet":"",
+        "altitude":"",
+        "attitudeJet":"",
+        "varioJet":"",
+        "compass":"",
+        "rpmJet":"",
+        "spoilers":"",
+        "brakes":"",
+        "gear":"",
+        "flaps":""
+    },
+
+    "parts":[
+        {
+            "name":"body",
+            "type":"airfoil",
+            "model":"body.glb",
+            "position":[0,7,0],
+            "liftFactor":0,
+            "dragFactor":3.8,
+            "forceDirection":"X"
+        },
+
+        {
+            "name":"horizontalStab",
+            "parent":"body",
+            "type":"airfoil",
+            "area":20,
+            "forceDirection":"Z",
+            "stalls":true
+        },
+
+        {
+            "name":"verticalStab",
+            "parent":"body",
+            "type":"airfoil",
+            "area":18,
+            "forceDirection":"X",
+            "stalls":true
+        },
+
+        {
+            "name":"leftWing",
+            "parent":"body",
+            "type":"airfoil",
+            "area":75,
+            "forceDirection":"Z",
+            "stalls":true
+        },
+
+        {
+            "name":"rightWing",
+            "parent":"body",
+            "type":"airfoil",
+            "area":75,
+            "forceDirection":"Z",
+            "stalls":true
+        },
+
+        {
+            "name":"leftElevator",
+            "parent":"body",
+            "type":"airfoil",
+            "liftFactor":38,
+            "forceDirection":"Z"
+        },
+
+        {
+            "name":"rightElevator",
+            "parent":"body",
+            "type":"airfoil",
+            "liftFactor":38,
+            "forceDirection":"Z"
+        },
+
+        {
+            "name":"rudder",
+            "parent":"body",
+            "type":"airfoil",
+            "area":8,
+            "forceDirection":"X"
+        },
+
+        {
+            "name":"leftEngine",
+            "type":"engine",
+            "thrust":125000,
+            "reverseThrust":65000,
+            "forceDirection":"Y"
+        },
+
+        {
+            "name":"rightEngine",
+            "type":"engine",
+            "thrust":125000,
+            "reverseThrust":65000,
+            "forceDirection":"Y"
+        }
+    ],
+
+    "contactProperties":{
+        "wheel":{
+            "frictionCoef":6,
+            "dynamicFriction":0.02,
+            "rollingFriction":0.0002,
+            "lockSpeed":0.008,
+            "damping":1
+        }
+    },
+
+    "soundSet":"player",
+
+    "cameras":{
+        "follow":{"distance":85}
+    },
+
+    "shadowBox":[55,45]
+}
+]
+
+
+[
+{
+    "scale":1,
+    "mass":140000,
+    "tensorFactor":0.016,
+    "dragFactor":2.2,
+    "com":[0,-10.5,0],
+    "gearTravelTime":7,
+    "flapsTravelTime":4.5,
+    "flapsSteps":4,
+    "airbrakesTravelTime":1,
+    "brakeDamping":5,
+    "zeroThrustAltitude":71000,
+    "reverse":true,
+    "minRPM":950,
+    "maxRPM":9900,
+    "driveRatio":0.28,
+    "engineInertia":1.4,
+    "startupTime":10,
+    "startAltitude":4,
+    "startTilt":0,
+    "minimumSpeed":150,
+    "cockpitScaleFix":1,
+    "autopilot":true,
+
+    "instruments":{
+        "airspeedJet":"",
+        "altitude":"",
+        "attitudeJet":"",
+        "varioJet":"",
+        "compass":"",
+        "rpmJet":"",
+        "spoilers":"",
+        "brakes":"",
+        "gear":"",
+        "flaps":""
+    },
+
+    "parts":[
+        {
+            "name":"body",
+            "type":"airfoil",
+            "model":"body.glb",
+            "position":[0,7,0],
+            "liftFactor":0,
+            "dragFactor":3.5,
+            "forceDirection":"X"
+        },
+
+        {
+            "name":"horizontalStab",
+            "parent":"body",
+            "type":"airfoil",
+            "area":16,
+            "forceDirection":"Z",
+            "stalls":true
+        },
+
+        {
+            "name":"verticalStab",
+            "parent":"body",
+            "type":"airfoil",
+            "area":15,
+            "forceDirection":"X",
+            "stalls":true
+        },
+
+        {
+            "name":"leftWing",
+            "parent":"body",
+            "type":"airfoil",
+            "area":65,
+            "forceDirection":"Z",
+            "stalls":true
+        },
+
+        {
+            "name":"rightWing",
+            "parent":"body",
+            "type":"airfoil",
+            "area":65,
+            "forceDirection":"Z",
+            "stalls":true
+        },
+
+        {
+            "name":"leftElevator",
+            "parent":"body",
+            "type":"airfoil",
+            "liftFactor":34,
+            "forceDirection":"Z"
+        },
+
+        {
+            "name":"rightElevator",
+            "parent":"body",
+            "type":"airfoil",
+            "liftFactor":34,
+            "forceDirection":"Z"
+        },
+
+        {
+            "name":"rudder",
+            "parent":"body",
+            "type":"airfoil",
+            "area":7,
+            "forceDirection":"X"
+        },
+
+        {
+            "name":"leftEngine",
+            "type":"engine",
+            "thrust":110000,
+            "reverseThrust":60000,
+            "forceDirection":"Y"
+        },
+
+        {
+            "name":"rightEngine",
+            "type":"engine",
+            "thrust":110000,
+            "reverseThrust":60000,
+            "forceDirection":"Y"
+        }
+    ],
+
+    "contactProperties":{
+        "wheel":{
+            "frictionCoef":5.5,
+            "dynamicFriction":0.02,
+            "rollingFriction":0.00015,
+            "lockSpeed":0.008,
+            "damping":1
+        }
+    },
+
+    "soundSet":"player",
+
+    "cameras":{
+        "follow":{"distance":80}
+    },
+
+    "shadowBox":[50,40]
+}
+]
