@@ -1,66 +1,29 @@
-{
-  "name": "Airbus A300 Study",
-  "description": "Study-level Airbus A300",
-  "mass": 165000,
-  "maxFuel": 68000,
-  "engines": [
-    {
-      "type": "turbofan",
-      "thrust": 260000,
-      "afterburner": false
-    }
-  ],
-  "flightModel": {
-    "liftCoefficient": 1.45,
-    "dragCoefficient": 0.032,
-    "pitchStability": 0.85,
-    "rollStability": 0.78,
-    "yawStability": 0.82,
-    "maxSpeed": 480,
-    "stallSpeed": 120,
-    "serviceCeiling": 41000,
-    "climbRate": 2800
-  },
-  "landingGear": {
-    "retractTime": 6,
-    "suspensionStrength": 1.4
-  },
-  "flaps": {
-    "stages": [0, 5, 15, 25, 40],
-    "dragIncrease": 0.02
-  }
-}
 
-
-{
-  "name": "Airbus A310 Study",
-  "description": "Study-level Airbus A310",
-  "mass": 142000,
-  "maxFuel": 61000,
-  "engines": [
-    {
-      "type": "turbofan",
-      "thrust": 240000,
-      "afterburner": false
-    }
-  ],
-  "flightModel": {
-    "liftCoefficient": 1.5,
-    "dragCoefficient": 0.030,
-    "pitchStability": 0.88,
-    "rollStability": 0.82,
-    "yawStability": 0.84,
-    "maxSpeed": 500,
-    "stallSpeed": 118,
-    "serviceCeiling": 43000,
-    "climbRate": 3100
+[
+  {
+    "name": "Airbus A300 Study",
+    "description": "Study-level Airbus A300",
+    "mass": 165000,
+    "maxFuel": 68000,
+    "engines": [
+      { "type": "turbofan", "thrust": 260000, "afterburner": false },
+      { "type": "turbofan", "thrust": 260000, "afterburner": false }
+    ],
+    "flightModel": { ... },
+    "landingGear": { ... },
+    "flaps": { ... }
   },
-  "landingGear": {
-    "retractTime": 5,
-    "suspensionStrength": 1.3
-  },
-  "flaps": {
-    "stages": [0, 5, 15, 25, 40],
-    "dragIncrease": 0.018
+  {
+    "name": "Airbus A310 Study",
+    "description": "Study-level Airbus A310",
+    "mass": 142000,
+    "maxFuel": 61000,
+    "engines": [
+      { "type": "turbofan", "thrust": 240000, "afterburner": false },
+      { "type": "turbofan", "thrust": 240000, "afterburner": false }
+    ],
+    "flightModel": { ... },
+    "landingGear": { ... },
+    "flaps": { ... }
   }
-}
+]
