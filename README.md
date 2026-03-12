@@ -17,3 +17,6 @@ Installation
 	2.	Open GeoFS in your browser.
 	3.	Add the aircraft definition URL from this repository.
 	4.	Select the aircraft in the aircraft menu.
+
+you can view the repo in this link
+https://github.com/geofs-plugins/aircraft-loader.git
