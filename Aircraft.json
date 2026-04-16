@@ -70,3 +70,43 @@
     "ceiling": 39000
   }
 }
+{
+  "name": "Airbus A300-600ST Beluga",
+  "type": "cargo",
+
+  "sounds": {
+    "engineLow": { "file": "a300_front_low.ogg", "loop": true },
+    "engineMid": { "file": "a300_front_mid.ogg", "loop": true },
+    "engineHigh": { "file": "a300_front_high.ogg", "loop": true },
+    "reverse": { "file": "a300_reverse.mp3", "loop": true },
+    "touchSoft": { "file": "a300_touch_soft.mp3", "loop": false },
+    "touchHard": { "file": "a300_touch_hard.mp3", "loop": false },
+    "gpws": { "file": "a300_gpws.mp3", "loop": false }
+  },
+
+  "cameras": {
+    "cockpit": { "position": [0, 5.5, 15] },
+    "copilot": { "position": [1.3, 5.4, 14.8] },
+    "wingLeft": { "position": [-18, 6, 8] },
+    "wingRight": { "position": [18, 6, 8] },
+    "tail": { "position": [0, 8, -30] },
+    "tower": { "position": [0, 70, -140] }
+  },
+
+  "flightModel": {
+    "mass": 180000,
+    "thrust": 235000,
+    "drag": 0.042,
+    "lift": 1.55,
+    "flapsLift": 0.75,
+    "flapsDrag": 0.10,
+    "gearDrag": 0.030,
+
+    "stallSpeed": 125,
+    "rotationSpeed": 150,
+    "approachSpeed": 145,
+    "maxSpeed": 440,
+    "climbRate": 2000,
+    "ceiling": 31000
+  }
+}
